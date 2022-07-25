@@ -1,26 +1,40 @@
 import ExpenseItem from "./components/Expenses/ExpenseItem";
 import NewExpense from "./components/NewExpense/NewExpense";
+import { useState } from "react";
 function App() {
-  const expenses = [
+  let expenses = useState([
     {
-      date: new Date(2021, 2, 28),
       title: "car insurance",
       amount: "69",
+      date: new Date(2021, 2, 28),
     },
     {
-      date: new Date(2021, 3, 29),
       title: "food",
       amount: "300",
+      date: new Date(2021, 3, 29),
     },
-  ];
-  let itemDisplay = expenses.map((num) => (
-    <ExpenseItem date={num.date} title={num.title} amount={num.amount} />
-  ));
-
+  ])
+  let [itemDisplay, setItemDisplay] = useState(
+    expenses.map((num) => (
+      <ExpenseItem date={num.date} title={num.title} amount={num.amount} />
+    ))
+  );
+  function updateItemDisplay() {
+    setItemDisplay(
+      expenses.map((num) => (
+        <ExpenseItem date={num.date} title={num.title} amount={num.amount} />
+      ))
+    );
+  }
+  function saveExpenseDataHandler(enteredExpenseData) {
+    expenses = enteredExpenseData
+    console.log(expenses);
+    updateItemDisplay();
+  }
   return (
     <div>
       <h2>Let's get started!</h2>
-      <NewExpense />
+      <NewExpense dataMade={saveExpenseDataHandler} />
       <div className="expenses">{itemDisplay}</div>
     </div>
   );
