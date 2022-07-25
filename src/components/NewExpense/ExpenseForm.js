@@ -20,7 +20,7 @@ function ExpenseForm() {
     console.log(enteredTitle);
     console.log(enteredAmount);
     console.log(enteredDate);
-    const newData = {
+    const expenseDate = {
       title: enteredTitle,
       amount: enteredAmount,
       date: new Date(enteredDate),
