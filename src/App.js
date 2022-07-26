@@ -2,7 +2,7 @@ import ExpenseItem from "./components/Expenses/ExpenseItem";
 import NewExpense from "./components/NewExpense/NewExpense";
 import { useState } from "react";
 function App() {
-  let expenses = useState([
+  let [expenses, setExpenses] = useState([
     {
       title: "car insurance",
       amount: "69",
@@ -27,7 +27,7 @@ function App() {
     );
   }
   function saveExpenseDataHandler(enteredExpenseData) {
-    expenses = enteredExpenseData
+    setExpenses([...expenses, enteredExpenseData])
     console.log(expenses);
     updateItemDisplay();
   }
