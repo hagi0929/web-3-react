@@ -1,6 +1,6 @@
+import React, { useEffect, useState } from "react";
 import ExpenseItem from "./components/Expenses/ExpenseItem";
 import NewExpense from "./components/NewExpense/NewExpense";
-import { useState } from "react";
 function App() {
   let [expenses, setExpenses] = useState([
     {
@@ -13,7 +13,7 @@ function App() {
       amount: "300",
       date: new Date(2021, 3, 29),
     },
-  ])
+  ]);
   let [itemDisplay, setItemDisplay] = useState(
     expenses.map((num) => (
       <ExpenseItem date={num.date} title={num.title} amount={num.amount} />
@@ -26,10 +26,14 @@ function App() {
       ))
     );
   }
-  function saveExpenseDataHandler(enteredExpenseData) {
-    setExpenses([...expenses, enteredExpenseData])
-    console.log(expenses);
+
+  useEffect(() => {
     updateItemDisplay();
+  }, [expenses]);
+  function saveExpenseDataHandler(enteredExpenseData) {
+    setExpenses([...expenses, enteredExpenseData]);
+
+    console.log(expenses);
   }
   return (
     <div>
